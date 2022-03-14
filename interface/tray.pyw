@@ -1,7 +1,14 @@
 from PyQt6 import QtCore
-from PyQt6.QtGui import QAction, QIcon, QPixmap
+from PyQt6.QtGui import QAction, QIcon, QPixmap, QPalette, QColor
 from PyQt6.QtWidgets import (
-    QApplication, QMainWindow, QSystemTrayIcon, QMenu, QLabel)
+    QApplication, QMainWindow, QSystemTrayIcon, QMenu, QLabel, QPushButton, QLineEdit)
+
+class InpLine(QLineEdit):
+  clicked = QtCore.pyqtSignal()
+  def mouseReleaseEvent(self, QMouseEvent):
+    if QMouseEvent.button()==QtCore.Qt.MouseButton.LeftButton:
+      self.clicked.emit()
+
 
 
 class MainWindows(QMainWindow):
@@ -32,9 +39,42 @@ class MainWindows(QMainWindow):
         self.tray_icon.show()
 
     def ui_resize(self):
-        self.setFixedSize(int(350*self.unit),int(350*self.unit))  
+        self.setFixedSize(int(350*self.unit),int(500*self.unit))  
         self.hedghehog()
+        self.inp_bttn()
 
+    def inp_bttn(self):
+        self.inp = InpLine(self) #создал новый класс чтобы можно было отслеживать клик по полю ввода, на будущее
+        self.btn = QPushButton(self)
+        btn_size = int(60*self.unit)
+        self.btn.setFixedSize(btn_size,btn_size)
+        radius = btn_size//2
+        border = int(5*self.unit)
+        self.btn.setText("Х")
+        self.btn_style = f"""background-color: rgba(255, 255, 255, 0.5);
+                    border-radius: {radius}px;
+                    border: {border}px solid white;
+                    color:  white;"""
+        self.btn.setStyleSheet(self.btn_style)
+        self.btn.move(int(80*self.unit - self.btn.width()/2),int(370*self.unit))
+
+        self.inp.setFixedSize(int(250*self.unit),btn_size)
+        self.inp.move(int(self.width()/2 - self.inp.width()/2),int(370*self.unit))
+        self.inp.setStyleSheet(self.btn_style+f"padding-left: {btn_size};")
+
+        self.send_btn = QPushButton(self)
+        self.send_btn.setFixedSize(btn_size,btn_size)
+        self.send_btn.move(self.inp.width()+self.inp.width()*0.05+btn_size/2,int(365*self.unit))
+        self.send_btn.setText("▶")
+        self.send_btn.setStyleSheet(f"""font-size: {btn_size+20}px;
+                                       background-color: rgba(255, 255, 255, 0.0);
+                                        border-radius: {radius}px;
+                                        color:  rgba(255, 255, 255, 0.7);""")
+
+        #self.btn.clicked.connect() // при клике на кнопку !! 
+        #self.inp.clicked.connect() // при клике на поле ввода !! 
+        #self.send_btn.connect() // при клике на кнопку ввода!! 
+        
     def hedghehog(self):
         pixmap = QPixmap("img/ez.png")
         self.hed_pic = QLabel(self)
@@ -50,8 +90,8 @@ class MainWindows(QMainWindow):
                 QSystemTrayIcon.MessageIcon(1),
                 2000
                 ) 
-                
-    def mousePressEvent(self, event):
+
+    def mousePressEvent(self, event): # перетаскивание
         if event.buttons() == QtCore.Qt.MouseButton.LeftButton:
             self.dragPos = event.globalPosition().toPoint()
         else:
@@ -60,7 +100,7 @@ class MainWindows(QMainWindow):
             context.addAction(self.quit_action)
             context.exec(event.globalPosition().toPoint())
 
-    def mouseMoveEvent(self, event):
+    def mouseMoveEvent(self, event): # перетаскивание
       self.move(self.pos() + event.globalPosition().toPoint() - self.dragPos )
       self.dragPos = event.globalPosition().toPoint()
       event.accept()
