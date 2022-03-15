@@ -2,6 +2,8 @@ from PyQt6 import QtCore
 from PyQt6.QtGui import QAction, QIcon, QPixmap, QPalette, QColor
 from PyQt6.QtWidgets import (
     QApplication, QMainWindow, QSystemTrayIcon, QMenu, QLabel, QPushButton, QLineEdit)
+import threading
+import recognition
 
 class InpLine(QLineEdit):
   clicked = QtCore.pyqtSignal()
@@ -16,7 +18,6 @@ class MainWindows(QMainWindow):
         super().__init__()
         self.unit = 1
         self.tray()
-        
 
     def tray(self):
         self.icon = QIcon("img/icon.png")
@@ -71,9 +72,12 @@ class MainWindows(QMainWindow):
                                         border-radius: {radius}px;
                                         color:  rgba(255, 255, 255, 0.7);""")
 
+        self.thr = threading.Thread(target=self.voice_recognition)
+        self.btn.clicked.connect(self.btn_click)
+
         #self.btn.clicked.connect() // при клике на кнопку !! 
         #self.inp.clicked.connect() // при клике на поле ввода !! 
-        #self.send_btn.connect() // при клике на кнопку ввода!! 
+        #self.send_btn.connect() // при клике на кнопку ввода!!
         
     def hedghehog(self):
         pixmap = QPixmap("img/ez.png")
@@ -104,6 +108,13 @@ class MainWindows(QMainWindow):
       self.move(self.pos() + event.globalPosition().toPoint() - self.dragPos )
       self.dragPos = event.globalPosition().toPoint()
       event.accept()
+
+    def btn_click(self):
+        self.thr.start()
+    def voice_recognition(self):
+        self.inp.setText("Говорите")
+        recognized_text = recognition.google_recognize()
+        self.inp.setText(recognized_text)
 
 def main():
     import sys
