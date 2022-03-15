@@ -14,7 +14,5 @@ def google_recognize():
 
 if __name__ == "__main__":
     while True:
-        recognizer = speech_recognition.Recognizer()
-        microphone = speech_recognition.Microphone()
         print("Говорите")
         print(google_recognize())

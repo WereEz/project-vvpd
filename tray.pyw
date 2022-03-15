@@ -111,6 +111,7 @@ class MainWindows(QMainWindow):
 
     def btn_click(self):
         self.thr.start()
+        self.thr = threading.Thread(target=self.voice_recognition)
     def voice_recognition(self):
         self.inp.setText("Говорите")
         recognized_text = recognition.google_recognize()
