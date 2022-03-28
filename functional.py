@@ -1,4 +1,5 @@
 import webbrowser
+import os
 
 def execute_command(commands, command):
     command = command.lower()
@@ -10,7 +11,7 @@ def execute_command(commands, command):
 def fopen(commands, command):
     for i in commands["folders"].items():
         if command.find(i[1]) != -1:
-            #открыть папку, путь хранится в i[0]
+            os.system(f'start "" "{(i[0])}"')
             return 1
     for i in commands["sites"].items():
         for j in i[1]:
