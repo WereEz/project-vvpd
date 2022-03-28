@@ -121,7 +121,7 @@ class MainWindows(QMainWindow):
         self.inp.setText(recognized_text)
         if recognized_text != "Не распознано":
             time.sleep(2)
-            with open("commands.json", "r") as read_file:
+            with open("commands.json", "r", encoding = "utf-8") as read_file:
                 commands = json.load(read_file)
             success = functional.execute_command(commands, recognized_text)
             if success == 0:

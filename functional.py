@@ -1,7 +1,7 @@
 import webbrowser
 
 def execute_command(commands, command):
-    command.lower()
+    command = command.lower()
     if command.find("открой") != -1 or command.find("открыть") != -1:
         return fopen(commands, command)
     if command.find("поиск") != -1 or command.find("найди") != -1 or command.find("найти") != -1:
@@ -15,7 +15,7 @@ def fopen(commands, command):
     for i in commands["sites"].items():
         for j in i[1]:
             if command.find(j) != -1:
-                webbrowser.open_new_tab(j[0])
+                webbrowser.open_new_tab(i[0])
                 return 1
     return 0
 
