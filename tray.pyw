@@ -2,8 +2,11 @@ from PyQt6 import QtCore
 from PyQt6.QtGui import QAction, QIcon, QPixmap, QPalette, QColor
 from PyQt6.QtWidgets import (
     QApplication, QMainWindow, QSystemTrayIcon, QMenu, QLabel, QPushButton, QLineEdit)
+import time
+import json
 import threading
 import recognition
+import functional
 
 class InpLine(QLineEdit):
   clicked = QtCore.pyqtSignal()
@@ -116,6 +119,15 @@ class MainWindows(QMainWindow):
         self.inp.setText("Говорите")
         recognized_text = recognition.google_recognize()
         self.inp.setText(recognized_text)
+        if recognized_text != "Не распознано":
+            time.sleep(2)
+            with open("commands.json", "r") as read_file:
+                commands = json.load(read_file)
+            success = functional.execute_command(commands, recognized_text)
+            if success == 0:
+                self.inp.setText("Команда не выполнена")
+            else:
+                self.inp.setText("")
 
 def main():
     import sys
