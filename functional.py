@@ -25,5 +25,6 @@ def fsearch(command):
     search_string = search_string.replace("найди", "", 1)
     search_string = search_string.replace("найти", "", 1)
     search_string = search_string.replace(" ","+")
+    search_string = search_string.replace("+","",1)
     search_string = "https://www.google.com/search?q=" + search_string
     webbrowser.open_new_tab(search_string)
