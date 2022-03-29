@@ -21,9 +21,9 @@ def fopen(commands, command):
     return 0
 
 def fsearch(command):
-    search_string = command.repalce("поиск", "", 1)
-    search_string = search_string.repalce("найди", "", 1)
-    search_string = search_string.repalce("найти", "", 1)
-    search_string = search_string.repalce(" ","+")
+    search_string = command.replace("поиск", "", 1)
+    search_string = search_string.replace("найди", "", 1)
+    search_string = search_string.replace("найти", "", 1)
+    search_string = search_string.replace(" ","+")
     search_string = "https://www.google.com/search?q=" + search_string
     webbrowser.open_new_tab(search_string)
