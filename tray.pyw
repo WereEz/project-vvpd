@@ -6,9 +6,10 @@ from time import sleep
 import json
 import threading
 import sys
-
 import recognition
 import functional
+import logging
+import psutil
 
 class InpLine(QLineEdit):
     clicked = QtCore.pyqtSignal()
@@ -200,9 +201,10 @@ class MainWindows(QMainWindow):
         with open("commands.json", "r", encoding = "utf-8") as read_file:
                 commands = json.load(read_file)
         success = functional.execute_command(commands, command)
-        if success == 0:
-            self.inp.setText("Команда не выполнена")
+        if success == None:
             sleep(1)
+            self.inp.setText("Команда не выполнена")
+        sleep(1)
         self.inp.setText("")
         self.hand_inp()
         self.inp.setReadOnly(False)
@@ -216,6 +218,7 @@ class MainWindows(QMainWindow):
 
         self.inp.setText("Говорите")
         recognized_text = recognition.google_recognize()
+        logging.info(recognized_text)
         self.inp.setText(recognized_text)
         if recognized_text != "Не распознано":
             self.open_smth()
@@ -224,7 +227,6 @@ class MainWindows(QMainWindow):
             self.inp.setText("")
         self.btn.setIcon(orig_icon)
         self.rec = False
-
 
 
     
@@ -375,6 +377,11 @@ class settings(QMainWindow):
 
         
 def main():
+    for proc in psutil.process_iter():
+        name = proc.name()
+        if name == "Voice assistant.exe":
+            sys.exit(0)
+    logging.basicConfig(filename="log.log", level=logging.INFO)
     app = QApplication(sys.argv)
     app.setQuitOnLastWindowClosed(False)
     unit = app.primaryScreen().size().height() / 1000 # unit - одна тысячная от высоты экрана, все размеры умножаются на него
