@@ -1,6 +1,6 @@
 import webbrowser
 import os
-
+import weather
 
 def execute_command(commands, command):
     command = command.lower()
@@ -10,8 +10,12 @@ def execute_command(commands, command):
         return fopen(commands, command)
     if command.find("поиск") != -1 or command.find("найди") != -1 or command.find("найти") != -1:
         return fsearch(command)
-
-
+    if (command.find("погод") != -1 and (command.find("скажи") != -1 or
+        command.find("какая")!= -1 or command.find("cейчас")!= -1)) or (command == ("погодa")):
+        mes = weather.get_weather()
+        message = f"<b>{mes['temperature']}</b><br>{mes['status']}<br>{mes['wind']}"
+        return(message)
+    
 def fopen(commands, command):
     for user_command in commands["user_commands"].items():
         if command == user_command[0].lower():

@@ -3,9 +3,11 @@ from PyQt6.QtGui import QAction, QIcon, QPixmap, QPalette, QFont, QFontDatabase
 from PyQt6.QtWidgets import (
     QApplication, QGroupBox, QWidget, QMainWindow, QSystemTrayIcon, QHBoxLayout, QVBoxLayout,  QFormLayout, QMenu, QLabel, QPushButton, QLineEdit, QScrollArea)
 from time import sleep
+from settings import SettingsWindow
 import json
 import threading
 import sys
+import logging
 import recognition
 import functional
 import logging
@@ -30,6 +32,9 @@ class MainWindows(QMainWindow):
         self.hand_inp_is_work = False
         self.unit = 1
         self.tray()
+        self.init()
+        self.answer = False
+        
         
     def tray(self):
         self.icon = QIcon("img/icon.png")
@@ -45,7 +50,7 @@ class MainWindows(QMainWindow):
         self.hide_in_tray_action.triggered.connect(self.hide_in_tray)
         self.show_action.triggered.connect(self.show)
         self.hide_action.triggered.connect(self.hide)
-        self.quit_action.triggered.connect(QApplication.instance().quit)
+        self.quit_action.triggered.connect(self.quit)
         tray_menu = QMenu()
         tray_menu.addAction(self.show_action)
         tray_menu.addAction(self.hide_action)
@@ -54,15 +59,23 @@ class MainWindows(QMainWindow):
         self.tray_icon.setContextMenu(tray_menu)
         self.tray_icon.show()
 
+
+    def init(self):
+        self.inp = InpLine(self) #создал новый класс чтобы можно было отслеживать клик по полю ввода, на будущее
+        self.btn = QPushButton(self)
+        self.send_btn = QPushButton(self)
+
+
     def ui_resize(self):
         self.setFixedSize(int(350*self.unit),int(500*self.unit))  
         self.hedghehog()
         self.inp_bttn()
 
+    def quit(self):
+        self.close = True
+        QApplication.instance().quit()
+
     def inp_bttn(self):
-        
-        self.inp = InpLine(self) #создал новый класс чтобы можно было отслеживать клик по полю ввода, на будущее
-        self.btn = QPushButton(self)
         self.btn_size = int(60*self.unit)
         self.btn.setFixedSize(self.btn_size,self.btn_size)
         radius = self.btn_size//2
@@ -71,10 +84,10 @@ class MainWindows(QMainWindow):
         self.btn_style = f"""background-color: rgba(0, 0, 0, 0.2);
                     border-radius: {radius}px;
                     border: none;
+                    font-size:{int(radius*0.8)}px;
                     color:  white;
                     """
         self.btn.setStyleSheet("background-color: rgba(255, 255, 255, 0.0)") 
-
 
         btn_ico = QPixmap("img/dark_btn.svg") 
         self.btn.setIcon(QIcon(btn_ico))
@@ -87,8 +100,6 @@ class MainWindows(QMainWindow):
         self.inp.setStyleSheet(self.btn_style + f" padding-left: {int(self.btn_size*1.1)};")
         self.inp_hide_thr = threading.Thread(target=self.inp_hide)
         
-        
-        self.send_btn = QPushButton(self)
         send_btn_ico = QPixmap("img/send_dark_bttn.svg") 
         self.send_btn.setIcon(QIcon(send_btn_ico))
         self.send_btn.setIconSize(self.send_btn.size()*1.3)
@@ -107,8 +118,6 @@ class MainWindows(QMainWindow):
         #self.inp.clicked.connect() // при клике на поле ввода !! 
         self.send_btn.clicked.connect(self.open_smth) 
         
-
-
 
         
     def hand_inp(self):
@@ -129,11 +138,11 @@ class MainWindows(QMainWindow):
 
     def inp_hide(self):
         sleep(1)
-
-        if self.hiden:
-            self.inp.hide()
-            self.btn.hide()
-            self.send_btn.hide()
+        if not self.close:
+            if self.hiden:
+                self.inp.hide()
+                self.btn.hide()
+                self.send_btn.hide()
 
     def enterEvent(self, event):
         self.hiden = False
@@ -149,12 +158,12 @@ class MainWindows(QMainWindow):
             self.inp_hide_thr.start()
             self.inp_hide_thr = threading.Thread(target=self.inp_hide)
 
-    def open_settings(self):
-        self.sett = settings()
-        self.sett.unit = self.unit
-        self.sett.ui_resize()
-        self.sett.setWindowFlags(QtCore.Qt.WindowType.FramelessWindowHint) #
-        self.sett.show()
+    def open_settings(self): 
+        self.settings = SettingsWindow()
+        self.settings.unit = self.unit
+        self.settings.setWindowFlags(QtCore.Qt.WindowType.FramelessWindowHint)
+        self.settings.ui_resize()
+        self.settings.show()
 
 
     def hedghehog(self):
@@ -164,6 +173,13 @@ class MainWindows(QMainWindow):
         self.hed_pic.resize(self.width()*0.8, self.width()*0.8)
         self.hed_pic.move(0.1*self.width(),0)
         self.hed_pic.setPixmap(pixmap)
+        self.output = QLabel(self)
+        self.output.move(self.width()*0.4,self.hed_pic.height()*0.19)
+        QFontDatabase.addApplicationFont('img\BalsamiqSans-Regular.ttf')
+        self.output.setFixedSize(160*self.unit,210*self.unit)
+        self.output.setAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter )
+        self.output.setFont(QFont("Balsamiq Sans", int(16*self.unit)))
+        
 
     def hide_in_tray(self):
             self.hide()
@@ -174,9 +190,28 @@ class MainWindows(QMainWindow):
                 2000
                 ) 
 
+    def default(self):
+        self.answer = False
+        pixmap = QPixmap("img/ez.png")
+        self.hed_pic.setPixmap(pixmap)
+        self.output.setText("")
+
+    def answering(self,text):
+        
+        self.answer = True
+        pixmap = QPixmap("img/mbox.png")
+        
+        self.hed_pic.setPixmap(pixmap)
+        self.output.setText(text)
+
+
+
     def mousePressEvent(self, event): # перетаскивание
         if event.buttons() == QtCore.Qt.MouseButton.LeftButton:
             self.dragPos = event.globalPosition().toPoint()
+            if self.answer:
+                self.default()
+
         else:
             context = QMenu(self)
             context.addAction(self.hide_in_tray_action)
@@ -193,18 +228,19 @@ class MainWindows(QMainWindow):
         self.thr.start()
         self.thr = threading.Thread(target=self.voice_recognition)
         
-
-    
     def open_smth(self):
         command = self.inp.text()
          #запретить редактировать
         with open("commands.json", "r", encoding = "utf-8") as read_file:
                 commands = json.load(read_file)
         success = functional.execute_command(commands, command)
-        if success == None:
+        if success == 0:
             sleep(1)
             self.inp.setText("Команда не выполнена")
+        print(success)
         sleep(1)
+        if isinstance(success, str):
+            self.answering(success)
         self.inp.setText("")
         self.hand_inp()
         self.inp.setReadOnly(False)
@@ -228,152 +264,6 @@ class MainWindows(QMainWindow):
         self.btn.setIcon(orig_icon)
         self.rec = False
 
-
-    
-class settings(QMainWindow):
-    def __init__(self):
-        super().__init__()
-
-        
-
-    def ui_resize(self):
-        self.setFixedSize(int(645*self.unit),int(795*self.unit))  
-        self.buttons()
-        self.layout = QVBoxLayout()
-        self.layout.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.labels()
-        self.scroll_area()
-        self.setStyleSheet("""QMainWindow {background-color: #ffffff;}""")
-
-
-    def buttons(self):
-        self.close_bttn = QPushButton(self)
-        self.close_bttn_size = int(55*self.unit)
-        self.close_bttn.setFixedSize(self.close_bttn_size,self.close_bttn_size)
-        self.close_bttn.move(int(645*self.unit-self.close_bttn_size),int(5*self.unit)) 
-        self.close_bttn.setStyleSheet("background-color: rgba(255, 255, 255, 0.0)") 
-        close_ico = QPixmap("img/close.svg") 
-        self.close_bttn.setIcon(QIcon(close_ico))
-        self.close_bttn.setIconSize(self.close_bttn.size())
-        self.close_bttn.clicked.connect(self.hide) 
-
-    def labels(self):
-
-        QFontDatabase.addApplicationFont('img\Pangolin-Regular.ttf')
-        QFontDatabase.addApplicationFont('img\BalsamiqSans-Regular.ttf')
-        self.add_name = QLabel(self)
-        self.add_name.setText("Быстрый доступ")
-        self.add_name.setFont(QFont("Pangolin", int(40*self.unit)))
-        self.add_name.adjustSize()
-        self.add_name.setStyleSheet("color: #5C5847")
-        self.add_name.move(int( self.width()/2 - self.add_name.width()/2),int(20*self.unit))
-
-    def mousePressEvent(self, event): # перетаскивание
-        if event.buttons() == QtCore.Qt.MouseButton.RightButton:
-            self.dragPos = event.globalPosition().toPoint()
-
-    def load_comm(self):
-        with open("commands.json", "r", encoding = "utf-8") as read_file:
-                commands = json.load(read_file)
-        self.sites = commands["sites"]
-        self.folders = commands["folders"]
-
-    
-    def mouseMoveEvent(self, event): # перетаскивание
-        if event.buttons() == QtCore.Qt.MouseButton.RightButton:
-            self.move(self.pos() + event.globalPosition().toPoint() - self.dragPos )
-            self.dragPos = event.globalPosition().toPoint()
-            event.accept()
-
-    def click(self, i):
-        try:
-            del self.sites[self.help[i][0]]
-        except:
-            del self.folders[self.help[i][0]]
-        a = {"sites": self.sites, 
-            "folders":self.folders}
-        with open("commands.json", "w", encoding = "utf-8") as f:
-                json.dump(a, f, indent = 2, ensure_ascii=False)
-        self.scroll_area()
-
-    def scroll_area(self):
-        wid = QWidget(self)
-        
-        self.load_comm()
-        formLayer = QFormLayout()
-        groupBox = QGroupBox()
-        nameList = []
-        adressList = []
-        delete_bttns = []
-        delete_ico = QPixmap("img/delete.svg") 
-
-        self.help = list(self.sites.items()) + list(self.folders.items() )
-
-
-        for i in range(len(self.help)):
-            layout2 = QHBoxLayout()
-            
-            
-            text = self.help[i][1]
-            if isinstance(text, list):
-                text = ", ".join(text)
-            name = QLabel(str(text))
-            name.setFont(QFont("Balsamiq Sans", int(17*self.unit)))
-            name.adjustSize()
-            name.setTextInteractionFlags((QtCore.Qt.TextInteractionFlag.TextSelectableByMouse))
-            nameList.append(name)
-
-            adress = QLabel(str(self.help[i][0]))
-            adress.setFont(QFont("Balsamiq Sans", int(17*self.unit)))
-            adress.adjustSize()
-            adress.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
-            adressList.append(adress)
-            button = QPushButton()
-            button.clicked.connect(lambda state, x=i: self.click(x))
-            button.setFixedSize(int(45 * self.unit),int(45 * self.unit))
-            button.setIcon(QIcon(delete_ico))
-            button.setIconSize(button.size())
-            delete_bttns.append(button)
-            
-            layout2.addWidget(nameList[i])
-            layout2.addWidget(adressList[i])
-            layout2.addWidget(delete_bttns[i])
-            formLayer.addRow(layout2)
-
-        groupBox.setMaximumWidth(int(self.width()*0.88))
-        groupBox.setLayout(formLayer)
-        scroll = QScrollArea()
-        scroll.setWidget(groupBox)
-        #scroll.setWidgetResizable(True)
-        scroll.setFixedHeight(int(self.height()*0.8))
-        scroll.setFixedWidth(int(self.width()*0.88))
-        
-        
-        scroll.setStyleSheet("""QGroupBox { border-radius: 10px;}
-                                QScrollArea {
-                                border: none;
-                                border-radius: 10%;
-                                background-color: #e7e6e1;}
-                                QLabel {
-                                    background-color: #ffffff;
-                                    border-radius: 10%;
-                                    padding: 3px;
-                                    margin: 3px;
-                                }
-                                QPushButton { background-color: rgba(255,255,255,0);}
-                                """)
-        
-
-        
-        
-        wid.setFixedSize(scroll.size())
-        layout = QVBoxLayout()
-        wid.move(int( self.width()/2 - wid.width()/2),int(100*self.unit))
-        layout.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        layout.addWidget(scroll)
-        wid.setLayout(layout)
-        wid.hide()
-        wid.show()
 
         
 def main():
