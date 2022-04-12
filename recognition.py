@@ -8,6 +8,7 @@ def google_recognize():
         audio = recognizer.listen(audio_file)
         try:
             result = recognizer.recognize_google(audio, language = "ru")
+
         except:
             return ("Не распознано")
         return result
