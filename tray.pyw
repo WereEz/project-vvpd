@@ -6,6 +6,8 @@ from time import sleep
 import json
 import threading
 import sys
+import psutil
+import logging
 
 import recognition
 import functional
@@ -375,6 +377,14 @@ class settings(QMainWindow):
 
         
 def main():
+    proc_check = 0
+    for proc in psutil.process_iter():
+        name = proc.name()
+        if name == "Voice_assistant.exe":
+            proc_check += 1
+    if proc_check > 2:
+        sys.exit(0)
+    logging.basicConfig(filename="log.log", level=logging.INFO)
     app = QApplication(sys.argv)
     app.setQuitOnLastWindowClosed(False)
     unit = app.primaryScreen().size().height() / 1000 # unit - одна тысячная от высоты экрана, все размеры умножаются на него
