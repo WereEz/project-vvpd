@@ -4,7 +4,7 @@ import weather
 
 def execute_command(commands, command):
     command = command.lower()
-    if any(command == i[0].lower() for i in commands["user_commands"].items()):
+    if any(command == i[0].lower() for i in commands.items()):
         return fopen(commands, command)
     if command.find("открой") != -1 or command.find("открыть") != -1:
         return fopen(commands, command)
@@ -17,7 +17,7 @@ def execute_command(commands, command):
         return(message)
     
 def fopen(commands, command):
-    for user_command in commands["user_commands"].items():
+    for user_command in commands.items():
         if command == user_command[0].lower():
             sites, folders = map(lambda x: list(
                 x.values())[0], user_command[1])

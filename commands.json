@@ -1,9 +1,18 @@
 {
-  "sites":{"https://www.youtube.com/":["youtube","ютуб","ютюб"],
-           "https://vk.com/feed/": ["vk", "вк","вконтакте"]},
-  "folders":{"C:\\Работа": "работа",
-             "C:\\Учёба": "учёба"},
-  "user_commands": {"отдых":[{"sites":["https://www.youtube.com/",
-                                        "https://vk.com/feed/"]},
-                            {"folders": ["C:\\Отдых"]}]}
+  "sites": {
+    "https://www.youtube.com/": [
+      "youtube",
+      "ютуб",
+      "ютюб"
+    ],
+    "https://vk.com/feed/": [
+      "vk",
+      "вк",
+      "вконтакте"
+    ]
+  },
+  "folders": {
+    "C:\\Работа": "работа",
+    "C:\\Учёба": "учёба"
+  }
 }
