@@ -27,11 +27,12 @@ class InpLine(QLineEdit):
 
 
 class MainWindows(QMainWindow):
-    def __init__(self):
+    def __init__(self, unit = 1):
         super().__init__()
         self.rec = False
         self.hand_inp_is_work = False
-        self.unit = 1
+        self.unit = unit
+        self.unit_sett = unit
         self.tray()
         self.init()
         self.answer = False
@@ -66,6 +67,7 @@ class MainWindows(QMainWindow):
         self.send_btn = QPushButton(self)
 
     def ui_resize(self):
+        self.import_prefs()
         self.setFixedSize(int(350*self.unit), int(500*self.unit))
         self.hedghehog()
         self.inp_bttn()
@@ -73,6 +75,11 @@ class MainWindows(QMainWindow):
     def quit(self):
         self.close = True
         QApplication.instance().quit()
+
+    def import_prefs(self):
+        with open("prefs.json", "r", encoding="utf-8") as read_file:
+            prefs = json.load(read_file)
+        self.unit = self.unit_sett * prefs["unit"]/100
 
     def inp_bttn(self):
         self.btn_size = int(60*self.unit)
@@ -161,8 +168,8 @@ class MainWindows(QMainWindow):
             self.inp_hide_thr = threading.Thread(target=self.inp_hide)
 
     def open_settings(self):
-        self.settings = SettingsWindow()
-        self.settings.unit = self.unit
+        self.settings = SettingsWindow(self)
+        self.settings.unit = self.unit_sett
         self.settings.setWindowFlags(QtCore.Qt.WindowType.FramelessWindowHint)
         self.settings.ui_resize()
         self.settings.show()
@@ -277,8 +284,7 @@ def main():
     app.setQuitOnLastWindowClosed(False)
     # unit - одна тысячная от высоты экрана, все размеры умножаются на него
     unit = app.primaryScreen().size().height() / 1000
-    MainWindow = MainWindows()
-    MainWindow.unit = unit
+    MainWindow = MainWindows(unit = unit)
     MainWindow.ui_resize()
     MainWindow.setWindowFlags(QtCore.Qt.WindowType.Tool | QtCore.Qt.WindowType.WindowStaysOnTopHint |
                               QtCore.Qt.WindowType.FramelessWindowHint)  # скрытие из панели задач

@@ -1,8 +1,8 @@
 from PyQt6 import QtCore
 from PyQt6.QtGui import QAction, QIcon, QPixmap, QPalette, QColor, QFontDatabase, QFont
 from PyQt6.QtWidgets import (
-    QApplication, QMainWindow, QFrame, QScrollArea, QFileDialog, QSizePolicy, QLabel, QVBoxLayout, QPushButton, QStackedLayout, QHBoxLayout, QLineEdit, QWidget, QVBoxLayout)
-import time
+    QApplication, QMainWindow, QSlider, QFrame, QScrollArea, QFileDialog, QSizePolicy, QLabel, QVBoxLayout, QPushButton, QStackedLayout, QHBoxLayout, QLineEdit, QWidget, QVBoxLayout)
+import sys
 import json
 import os
 import threading
@@ -16,10 +16,102 @@ def check_site(site_name=""):
     if any([domen in site_name for domen in domens]):
         return 1
 
+def restart():
+    QtCore.QCoreApplication.quit()
+    status = QtCore.QProcess.startDetached(sys.executable, sys.argv)
+    print(status)
 
 class Appearance(QWidget):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, unit = 1):
         super().__init__()
+        self.unit = unit
+        self.import_prefs()
+        self.main_layout = QVBoxLayout()
+        self.setLayout(self.main_layout)
+        self.create_slider()
+        self.create_buttons()
+        self.main_layout.setContentsMargins(0, 0, 0, 0)
+        self.main_layout.setSpacing(0)
+        self.main_layout.addStretch()
+        
+
+
+    def import_prefs(self):
+        with open("prefs.json", "r", encoding="utf-8") as read_file:
+            self.prefs = json.load(read_file)
+
+
+                                
+    def create_slider(self):
+        QFontDatabase.addApplicationFont('img\Pangolin-Regular.ttf')
+        QFontDatabase.addApplicationFont('img\BalsamiqSans-Regular.ttf')
+        self.handleSize = int(self.width()*0.12)
+        self.slider = QSlider(QtCore.Qt.Orientation.Horizontal)
+        self.slider.setFixedHeight(int(80*self.unit))
+        self.slider.setFixedWidth(int(400*self.unit*0.7+20))
+        self.slider.setMinimum(20)
+        self.slider.setMaximum(180)
+        self.slider.setSliderPosition(100)
+        self.slider.setValue(self.prefs["unit"])
+        self.slider.setSingleStep(5)
+        self.slider.setTickInterval(5)
+        
+        self.slider_label = QLabel(self)
+        self.slider_label.setFixedSize(int(180*self.unit), int(40*self.unit))
+        self.slider_label.setText("Размер")
+        self.slider_label.setFont(QFont("Pangolin", int(24*self.unit)))
+        self.slider_label.setStyleSheet("letter-spacing: 0.7em; color: #5C5847;")
+        self.slider_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter)
+
+        self.slider_value = QLabel(self)
+        self.slider_value.setFixedSize(int(180*self.unit), int(40*self.unit))
+        self.slider_value.setText("%")
+        self.slider_value.setFont(QFont("Balsamiq Sans", int(15*self.unit)))
+        self.slider_value.setAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter)
+        self.slider_value.setStyleSheet("letter-spacing: 0.5em; color: #5C5847;")
+        
+        self.main_layout.addSpacing(20)
+        self.main_layout.addWidget(self.slider_label,alignment=QtCore.Qt.AlignmentFlag.AlignHCenter)
+        self.main_layout.addWidget(self.slider,alignment=QtCore.Qt.AlignmentFlag.AlignHCenter)
+        self.main_layout.addWidget(self.slider_value,alignment=QtCore.Qt.AlignmentFlag.AlignHCenter)
+        self.value_changed(self.prefs["unit"])
+        self.slider.valueChanged.connect(self.value_changed)
+
+    def create_buttons(self):
+        height = int(self.height()/12)
+        self.accept_ico = QPixmap("img/accept.svg")
+        self.accept_btn = QPushButton()
+        self.accept_btn.setFixedSize(height, height)
+        self.accept_btn.setIcon(QIcon(self.accept_ico))
+        self.accept_btn.setIconSize(self.accept_btn.size())
+        self.accept_btn.setStyleSheet("background-color: transparent;")
+        self.main_layout.addSpacing(100)
+        self.main_layout.addWidget(self.accept_btn,alignment=QtCore.Qt.AlignmentFlag.AlignHCenter)
+        self.accept_btn.clicked.connect(self.accept)
+
+
+    def accept(self):
+        a = {"unit": self.slider.value()}
+        with open("prefs.json", "w", encoding="utf-8") as f:
+            json.dump(a, f, indent=2, ensure_ascii=False)
+        restart()
+
+    def value_changed(self, i):
+        self.handleSize = int((i+100)/100*400*self.unit*0.12)
+        self.slider_value.setText(f"  {i}%")
+        self.slider.setStyleSheet("""QSlider::groove:horizontal {
+                                height: 10px;
+                                border-radius: 5px; 
+                                background-color: #AFAA9B;
+                                margin: 0px 10px;
+                                position: relative;
+                                    top: 30px;}                               
+                            QSlider::handle:horizontal {
+                                image: url('img/handle.png');
+                                position:relative;"""
+                                f"top:-{self.handleSize//2-4}px;"
+                                f"width: {self.handleSize}px;"
+                                f"margin: 0px -10px -{self.handleSize//2} -10px;}}")
 
 
 class FastAccess(QWidget, ):
@@ -41,9 +133,9 @@ class FastAccess(QWidget, ):
         self.widget = QWidget()
         # The Vertical Box that contains the Horizontal Boxes of  labels and buttons
         self.lines = QVBoxLayout()
-        self.lines.setSpacing(self.height()/50)
+        self.lines.setSpacing(self.height()//50)
         self.lines.setContentsMargins(
-            self.width()/60, self.height()/50, self.width()/50, self.height()/50)
+            self.width()//60, self.height()//50, self.width()//50, self.height()//50)
         self.widget.setLayout(self.lines)
         self.widget.setObjectName("main")
 
@@ -130,7 +222,7 @@ class FastAccess(QWidget, ):
 
     def create_form(self):
         layout = QHBoxLayout()
-        height = self.height()/12
+        height = int(self.height()/12)
         self.name = QLineEdit()
         self.adress = QLineEdit()
         self.name.setPlaceholderText("Названия")
@@ -217,16 +309,19 @@ class FastAccess(QWidget, ):
 
 
 class SettingsWindow(QMainWindow):
-    def __init__(self):
+    def __init__(self, parent = None):
         super().__init__()
         self.unit = 1
         self.init()
         self.ui_resize()
+        self.parent = parent
 
     def init(self):
+        self.max  = 0
         self.setWindowTitle("Settings")
         self.background = QWidget(self)
         self.line = QWidget(self)
+        self.dragPos = None
         QFontDatabase.addApplicationFont('img\BalsamiqSans-Regular.ttf')
         # местами поменять надо, случайно изначально их перепутал
         self.AppearenceBttn = QPushButton("быстрый доступ", parent=self)
@@ -244,7 +339,7 @@ class SettingsWindow(QMainWindow):
         pagelayout.addLayout(self.stacklayout)
 
         self.stacklayout.addWidget(FastAccess(unit = self.unit))
-        self.stacklayout.addWidget(Appearance())
+        self.stacklayout.addWidget(Appearance(parent = self,unit = self.unit))
 
         self.widget = QWidget()
         self.widget.setLayout(pagelayout)
@@ -259,7 +354,7 @@ class SettingsWindow(QMainWindow):
         style = """border: none;"""
         self.setStyleSheet(style)
 
-        self.line.setFixedHeight(self.height()/16)
+        self.line.setFixedHeight(int(self.height()/16))
         self.line.setFixedWidth(self.width())
         self.background.setFixedWidth(self.width())
         self.background.setFixedHeight(self.height())
@@ -273,10 +368,10 @@ class SettingsWindow(QMainWindow):
 
     def tabs(self):
         self.AppearenceBttn.setMinimumSize(
-            self.width()/2-self.height()/4, self.height()/8)
+            int(self.width()/2-self.height()/4), int(self.height()/8))
         self.FastAccessBttn.setMinimumSize(
-            self.width()/2-self.height()/4, self.height()/8)
-        self.ExitBttn.setFixedSize(self.height()/8+2, self.height()/8)
+            int(self.width()/2-self.height()/4), int(self.height()/8))
+        self.ExitBttn.setFixedSize(int(self.height()/8+2), int(self.height()/8))
         self.FastAccessBttn.move(self.AppearenceBttn.size().width(), 0)
 
         exit_ico = QPixmap("img/close.svg")
@@ -336,15 +431,16 @@ class SettingsWindow(QMainWindow):
         self.ExitBttn.setStyleSheet(self.close_btn)
 
     def mousePressEvent(self, event):  # перетаскивание
-        if event.buttons() == QtCore.Qt.MouseButton.LeftButton:
+        if event.buttons() == QtCore.Qt.MouseButton.RightButton:
             self.dragPos = event.globalPosition().toPoint()
 
     def mouseMoveEvent(self, event):  # перетаскивание
-        if event.buttons() == QtCore.Qt.MouseButton.LeftButton:
-            self.move(
-                self.pos() + event.globalPosition().toPoint() - self.dragPos)
-            self.dragPos = event.globalPosition().toPoint()
-            event.accept()
+        if self.dragPos != None:
+            if event.buttons() == QtCore.Qt.MouseButton.RightButton:
+                self.move(
+                    self.pos() + event.globalPosition().toPoint() - self.dragPos)
+                self.dragPos = event.globalPosition().toPoint()
+                event.accept()
 
 
 def main():
