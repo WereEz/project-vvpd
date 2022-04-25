@@ -6,6 +6,8 @@ def execute_command(commands, command):
     command = command.lower()
     if any(command == i[0].lower() for i in commands.items()):
         return fopen(commands, command)
+    if command.find("выполни") != -1 or command.find("выполнить") != -1:
+        return fcomplexcommand(commands, command)
     if command.find("открой") != -1 or command.find("открыть") != -1:
         return fopen(commands, command)
     if command.find("поиск") != -1 or command.find("найди") != -1 or command.find("найти") != -1:
@@ -17,16 +19,6 @@ def execute_command(commands, command):
         return(message)
     
 def fopen(commands, command):
-    for user_command in commands.items():
-        if command == user_command[0].lower():
-            sites, folders = map(lambda x: list(
-                x.values())[0], user_command[1])
-            for i in sites:
-                webbrowser.open_new_tab(i)
-            for j in folders:
-                if os.path.exists(j):
-                    os.system(f'start "" "{(j)}"')
-            return 1
     for i in commands["folders"].items():
         if command.find(i[1]) != -1 and os.path.exists(i[0]):
             os.system(f'start "" "{(i[0])}"')
@@ -46,3 +38,12 @@ def fsearch(command):
     search_string = search_string.replace(" ", "+")
     search_string = "https://www.google.com/search?q=" + search_string
     webbrowser.open_new_tab(search_string)
+
+def fcomplexcommand(commands, command):
+    for i in commands["complexcommands"].items():
+        if command.find(i[0]) != -1:
+            for j in i[1]:
+                if os.path.exists(j):
+                    os.system(f'start "" "{(j)}"')
+                else:
+                    webbrowser.open_new_tab(j)
