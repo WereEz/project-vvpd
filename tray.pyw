@@ -9,6 +9,7 @@ import threading
 import sys
 import psutil
 import logging
+import pyttsx3
 
 import recognition
 import functional
@@ -243,6 +244,13 @@ class MainWindows(QMainWindow):
         if success == 0:
             sleep(1)
             self.inp.setText("Команда не выполнена")
+        else:
+            tts = pyttsx3.init()
+            RU_VOICE_ID = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\TokenEnums\RHVoice\Anna"
+            tts.setProperty('voice', RU_VOICE_ID)
+            tts.say(command)
+            tts.runAndWait()
+            tts.stop()
         print(success)
         sleep(1)
         if isinstance(success, str):

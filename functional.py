@@ -47,3 +47,4 @@ def fcomplexcommand(commands, command):
                     os.system(f'start "" "{(j)}"')
                 else:
                     webbrowser.open_new_tab(j)
+            return 1
