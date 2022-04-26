@@ -1,0 +1,22 @@
+{
+  "sites": {
+    "https://www.youtube.com/": [
+      "youtube",
+      "ютуб",
+      "ютюб"
+    ],
+    "https://vk.com/feed/": [
+      "vk",
+      "вк",
+      "вконтакте"
+    ]
+  },
+  "folders": {
+    "C:\\Работа": "работа",
+    "C:\\Учёба": "учёба"
+  },
+  "complexcommands": {
+    "работаем": ["C:\\Работа", "https://github.com"],
+    "отдыхаем": ["https://www.youtube.com/", "https://vk.com/feed/"]
+  }
+}

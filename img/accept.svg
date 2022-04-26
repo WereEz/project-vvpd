@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.1.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 256 256" style="enable-background:new 0 0 256 256;" xml:space="preserve">
+<style type="text/css">
+	.st0{display:none;}
+	.st1{display:inline;fill:#725A5E;}
+	.st2{display:none;opacity:0.5;fill:#A4DAAC;enable-background:new    ;}
+	.st3{fill:#A4DAAC;}
+	.st4{display:none;fill:none;}
+	.st5{fill:none;stroke:#FFFFFF;stroke-width:39;stroke-linecap:round;stroke-miterlimit:10;}
+</style>
+<g id="Слой_1_1_" class="st0">
+	<path class="st1" d="M128,0C57.3,0,0,57.3,0,128s57.3,128,128,128s128-57.3,128-128S198.7,0,128,0z M89.5,71.6
+		c0-21.3,17.2-38.5,38.5-38.5s38.5,17.2,38.5,38.5V98c0,21.3-17.2,38.5-38.5,38.5S89.5,119.3,89.5,98V71.6z M181.4,150.1
+		c-11.2,11.6-25.4,19.1-40.9,21.7v22.7h9c6.9,0,12.5,5.6,12.5,12.5s-5.6,12.5-12.5,12.5h-42.9c-6.9,0-12.5-5.6-12.5-12.5
+		s5.6-12.5,12.5-12.5h9v-22.7c-15.4-2.6-29.5-10-40.7-21.6c-14.4-14.6-22-33.9-21.4-54.2c0.2-6.9,6-12.3,12.9-12.1
+		c6.9,0.2,12.3,6,12.1,12.9c-0.4,13.5,4.6,26.3,14.1,36s22,15.1,35.3,15.1h0.1c13.3,0,25.8-5.4,35.3-15.2s14.5-22.6,14.1-36
+		c-0.2-6.9,5.2-12.7,12.1-12.9c6.9-0.2,12.7,5.2,12.9,12.1C203.1,116.2,195.6,135.4,181.4,150.1z"/>
+</g>
+<g id="Слой_2_1_">
+	<g>
+		<path class="st2" d="M235.5,103.1L59.4,7.5C38.2-2,16,8.1,6.8,26c22.4,28,35.8,63.4,35.8,102S29.2,202,6.9,230
+			c9.2,17.8,31.4,28,52.6,18.5l176.2-95.7C256.9,143.1,256.9,112.8,235.5,103.1z"/>
+		<path class="st3" d="M192.6,256H63.4C28.4,256,0,227.6,0,192.6V63.4C0,28.4,28.4,0,63.4,0h129.2c35,0,63.4,28.4,63.4,63.4v129.2
+			C256,227.6,227.6,256,192.6,256z"/>
+		<line class="st4" x1="203" y1="53" x2="53" y2="203"/>
+		<line class="st4" x1="203" y1="203" x2="53" y2="53"/>
+	</g>
+</g>
+<image style="display:none;overflow:visible;opacity:0.2;enable-background:new    ;" width="714" height="649" xlink:href="ACE92B59.jpg"  transform="matrix(0.4303 0 0 0.4303 -21.3492 -14.3086)">
+</image>
+<image style="overflow:visible;enable-background:new    ;" width="596" height="284" xlink:href="ACE92B5B.jpg"  transform="matrix(0.998 0 0 0.998 -169.3984 283.3611)">
+</image>
+<line class="st5" x1="118.7" y1="178.2" x2="209.3" y2="80.9"/>
+<line class="st5" x1="60.8" y1="117.9" x2="117.6" y2="178.7"/>
+</svg>
