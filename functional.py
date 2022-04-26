@@ -4,19 +4,20 @@ import weather
 
 def execute_command(commands, command):
     command = command.lower()
-    if any(command == i[0].lower() for i in commands.items()):
-        return fopen(commands, command)
     if command.find("выполни") != -1 or command.find("выполнить") != -1:
         return fcomplexcommand(commands, command)
-    if command.find("открой") != -1 or command.find("открыть") != -1:
+    elif command.find("открой") != -1 or command.find("открыть") != -1:
         return fopen(commands, command)
-    if command.find("поиск") != -1 or command.find("найди") != -1 or command.find("найти") != -1:
+    elif command.find("поиск") != -1 or command.find("найди") != -1 or command.find("найти") != -1:
         return fsearch(command)
-    if (command.find("погод") != -1 and (command.find("скажи") != -1 or
+    elif (command.find("погод") != -1 and (command.find("скажи") != -1 or
         command.find("какая")!= -1 or command.find("cейчас")!= -1)) or (command == ("погодa")):
         mes = weather.get_weather()
         message = f"<b>{mes['temperature']}</b><br>{mes['status']}<br>{mes['wind']}"
         return(message)
+    elif command.find("привет") != -1 or command.find("здравствуйте"):
+        return "Здравствуйте"
+    return 0
     
 def fopen(commands, command):
     for i in commands["folders"].items():
