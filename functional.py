@@ -13,8 +13,10 @@ def execute_command(commands, command):
     if command.find("поиск") != -1 or command.find("найди") != -1 or command.find("найти") != -1:
         return fsearch(command)
     if (command.find("погод") != -1 and (command.find("скажи") != -1 or
-        command.find("какая")!= -1 or command.find("cейчас")!= -1)) or (command == ("погодa")):
+        command.find("какая")!= -1 or command.find("cейчас")!= -1)) or (command.find("погодa")):
         mes = weather.get_weather()
+        if mes == 0:
+            return 0
         message = f"<b>{mes['temperature']}</b><br>{mes['status']}<br>{mes['wind']}"
         return(message)
     
