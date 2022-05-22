@@ -2,21 +2,15 @@ from pyowm import OWM
 from pyowm.utils.config import get_default_config
 
 
-def get_weather(command):
+def get_weather(place="Красноярск"):
     config_dict = get_default_config()
     config_dict['language'] = 'ru'
     owm = OWM('1e21c100bda32fd7e80f329a1821a91f', config_dict)
     mgr = owm.weather_manager()
-    for i in command.split(" "):
-        try:
-            observation = mgr.weather_at_place(place+",RU")
-        except Exception:
-            place = 0  # Города не существует
-        finally:
-            place = i
-    if place == 0:
-        return 0
-    observation = mgr.weather_at_place(place + ",RU")
+    try:
+        observation = mgr.weather_at_place(place+",RU")
+    except Exception:
+        return 0  # Города не существует
     w = observation.weather
     t = w.temperature("celsius")
     weather = {	'city': place,

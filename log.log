@@ -3,60 +3,97 @@ INFO:root:Не распознано
 INFO:root:Не распознано
 INFO:root:Не распознано
 INFO:root:Не распознано
-INFO:root:Не распознано
-INFO:root:Открой лох
-INFO:root:проект
-INFO:root:Открой проект
-INFO:root:Открой игра
-INFO:root:Открой игра
-INFO:root:ой работа
-INFO:root:Открой работа
-INFO:root:работаем
-INFO:root:Выполни работаем
-INFO:root:Выполни отдыхаем
-INFO:comtypes.client._code_cache:Could not import comtypes.gen, trying to create it.
-INFO:comtypes.client._code_cache:Created comtypes.gen directory: 'C:\Users\yormu\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
-INFO:comtypes.client._code_cache:Writing __init__.py file: 'C:\Users\yormu\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen\__init__.py'
-INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\yormu\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
-INFO:comtypes.client._generate:Could not import comtypes.gen._C866CA3A_32F7_11D2_9602_00C04F8EE628_0_5_4: No module named 'comtypes.gen._C866CA3A_32F7_11D2_9602_00C04F8EE628_0_5_4'
-INFO:comtypes.client._generate:# Generating comtypes.gen._C866CA3A_32F7_11D2_9602_00C04F8EE628_0_5_4
-INFO:comtypes.client._generate:Could not import comtypes.gen._00020430_0000_0000_C000_000000000046_0_2_0: No module named 'comtypes.gen._00020430_0000_0000_C000_000000000046_0_2_0'
-INFO:comtypes.client._generate:# Generating comtypes.gen._00020430_0000_0000_C000_000000000046_0_2_0
-INFO:comtypes.client._generate:Could not import comtypes.gen.stdole: No module named 'comtypes.gen.stdole'
-INFO:comtypes.client._generate:# Generating comtypes.gen.stdole
-INFO:comtypes.client._generate:Could not import comtypes.gen.SpeechLib: No module named 'comtypes.gen.SpeechLib'
-INFO:comtypes.client._generate:# Generating comtypes.gen.SpeechLib
-INFO:root:Открой фото
-INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\yormu\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
-INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\yormu\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
-INFO:root:Открой работа
-INFO:root:Открой работа
-INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\yormu\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
-INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\yormu\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
-INFO:root:Открой работа
-INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\yormu\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
-INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\yormu\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
-INFO:root:Открой работа
-INFO:root:Открой работа
-INFO:root:Открой работа
-INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\yormu\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
-INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\yormu\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
-INFO:root:Открой учёба
-INFO:root:Открой учёба
-INFO:root:Открой учёба
-INFO:root:Открой работа
-INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\yormu\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
-INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\yormu\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
-INFO:root:Не распознано
-INFO:root:Открой учёба
-INFO:root:Открой учёба
-INFO:root:Открой работа
-INFO:root:Открой работа
-INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\yormu\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
-INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\yormu\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
-INFO:root:Открой работа
-INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\yormu\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
-INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\yormu\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
-INFO:root:Открой учёба
-INFO:root:Открой учёба
-INFO:root:Открой учёба
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
