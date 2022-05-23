@@ -29,7 +29,7 @@ def execute_command(commands, command):
             message = f"<b>{mes['temperature']}</b><br>{mes['status']}<br>{mes['wind']}"
         else:
             message = "<b>Извините</b><br>не могу узнать"
-        return(message)
+        return([message,1])
 
     if command in qa:
         return([random.choice(qa[command]),0])
