@@ -16,7 +16,13 @@
     "C:\\Учёба": "учёба"
   },
   "complexcommands": {
-    "работаем": ["C:\\Работа", "https://github.com"],
-    "отдыхаем": ["https://www.youtube.com/", "https://vk.com/feed/"]
+    "работаем": [
+      "C:\\Работа",
+      "https://github.com"
+    ],
+    "отдыхаем": [
+      "https://www.youtube.com/",
+      "https://vk.com/feed/"
+    ]
   }
 }
