@@ -478,7 +478,6 @@ class FastAccess(QWidget, ):
                             }
                             QScrollBar:vertical {
                             width: 10%;
-
                             background: transparent;
                             }
                             QScrollBar::handle:vertical {
