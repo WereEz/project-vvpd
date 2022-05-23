@@ -26,3 +26,5 @@ def get_weather(command):
                    'status': data['weather'][0]['description']
                    }
         return weather
+    else:
+        return 0
