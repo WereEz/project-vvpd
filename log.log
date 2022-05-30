@@ -109,3 +109,5 @@ INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from '
 INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
 INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
 INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
+INFO:comtypes.client._code_cache:Imported existing <module 'comtypes.gen' from 'C:\\Users\\emir\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\comtypes\\gen\\__init__.py'>
+INFO:comtypes.client._code_cache:Using writeable comtypes cache directory: 'C:\Users\emir\AppData\Local\Programs\Python\Python39\lib\site-packages\comtypes\gen'
