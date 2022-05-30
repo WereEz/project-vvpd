@@ -455,13 +455,16 @@ class Scripts(QWidget):
         self.accept_btn.show()
         self.adress.show()
         self.directory_btn.show()
+        self.adress.setPlaceholderText("Ссылка или путь")
+        try: self.accept_btn.clicked.disconnect()
+        except Exception: pass
+        self.accept_btn.clicked.connect(self.accept_command)
 
     def hide_form(self):
         self.accept_btn.hide()
         self.adress.hide()
         self.directory_btn.hide()
         self.adress.setPlaceholderText("Ссылка или путь")
-        
         try: self.accept_btn.clicked.disconnect()
         except Exception: pass
         self.accept_btn.clicked.connect(self.accept_command)
