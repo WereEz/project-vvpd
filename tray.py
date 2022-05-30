@@ -81,6 +81,7 @@ class MainWindows(QMainWindow):
         with open("prefs.json", "r", encoding="utf-8") as read_file:
             prefs = json.load(read_file)
         self.unit = self.unit_sett * prefs["unit"]/100
+        self.current_sprite = "img/ez"+str(prefs["sprite"])+".png"
 
     def inp_bttn(self):
         self.btn_size = int(60*self.unit)
@@ -178,7 +179,7 @@ class MainWindows(QMainWindow):
         self.settings.show()
 
     def hedghehog(self):
-        pixmap = QPixmap("img/ez.png")
+        pixmap = QPixmap(self.current_sprite)
         self.hed_pic = QLabel(self)
         self.hed_pic.setScaledContents(True)
         self.hed_pic.resize(int(self.width()*0.8), int(self.width()*0.8))
@@ -204,7 +205,7 @@ class MainWindows(QMainWindow):
 
     def default(self):
         self.answer = False
-        pixmap = QPixmap("img/ez.png")
+        pixmap = QPixmap(self.current_sprite)
         self.hed_pic.setPixmap(pixmap)
         self.output.setText("")
 
@@ -246,7 +247,7 @@ class MainWindows(QMainWindow):
         if success[0] == 0:
             sleep(1)
             self.inp.setText("Команда не выполнена")
-        else:
+        elif isinstance(success[0], str):
             tts = pyttsx3.init()
             RU_VOICE_ID = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\TokenEnums\RHVoice\Anna"
             tts.setProperty('voice', RU_VOICE_ID)

@@ -17,7 +17,7 @@ def check_site(site_name=""):
         return 1
 
 
-def restart():
+def restart():  
     QtCore.QCoreApplication.quit()
     status = QtCore.QProcess.startDetached(sys.executable, sys.argv)
     print(status)
@@ -30,6 +30,8 @@ class Appearance(QWidget):
         self.import_prefs()
         self.main_layout = QVBoxLayout()
         self.setLayout(self.main_layout)
+
+        self.create_sprites()
         self.create_slider()
         self.create_buttons()
         self.main_layout.setContentsMargins(0, 0, 0, 0)
@@ -39,6 +41,8 @@ class Appearance(QWidget):
     def import_prefs(self):
         with open("prefs.json", "r", encoding="utf-8") as read_file:
             self.prefs = json.load(read_file)
+        self.current_sprite = self.prefs["sprite"]
+
 
     def create_slider(self):
         QFontDatabase.addApplicationFont('img\Pangolin-Regular.ttf')
@@ -70,7 +74,7 @@ class Appearance(QWidget):
         self.slider_value.setStyleSheet(
             "letter-spacing: 0.5em; color: #5C5847;")
 
-        self.main_layout.addSpacing(20)
+        self.main_layout.addSpacing(10)
         self.main_layout.addWidget(
             self.slider_label, alignment=QtCore.Qt.AlignmentFlag.AlignHCenter)
         self.main_layout.addWidget(
@@ -88,13 +92,47 @@ class Appearance(QWidget):
         self.accept_btn.setIcon(QIcon(self.accept_ico))
         self.accept_btn.setIconSize(self.accept_btn.size())
         self.accept_btn.setStyleSheet("background-color: transparent;")
-        self.main_layout.addSpacing(100)
         self.main_layout.addWidget(
             self.accept_btn, alignment=QtCore.Qt.AlignmentFlag.AlignHCenter)
         self.accept_btn.clicked.connect(self.accept)
 
+    def change_sprite(self):
+        self.current_sprite = (self.current_sprite + 1)%9
+        self.sprite_ico = QPixmap("img/ez"+str(self.current_sprite)+".png")
+        self.sprite_btn.setIcon(QIcon(self.sprite_ico))
+        self.sprite_btn.setIconSize(self.sprite_btn.size())
+
+    def create_sprites(self):
+        
+        height = int(self.height()/5)
+
+        self.sprites_label = QLabel(self)
+        self.sprites_label.setFixedSize(int(180*self.unit), int(40*self.unit))
+        self.sprites_label.setText("Облик")
+        self.sprites_label.setFont(QFont("Pangolin", int(24*self.unit)))
+        self.sprites_label.setStyleSheet(
+            "letter-spacing: 0.7em; color: #5C5847;")
+        self.sprites_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter)
+
+
+
+        self.sprite_ico = QPixmap("img/ez"+str(self.current_sprite)+".png")
+        self.sprite_btn = QPushButton()
+        self.sprite_btn.setFixedSize(height, height)
+        self.sprite_btn.setIcon(QIcon(self.sprite_ico))
+        self.sprite_btn.setIconSize(self.sprite_btn.size())
+        self.sprite_btn.setStyleSheet("background-color: transparent;")
+        self.main_layout.addSpacing(10)
+        self.main_layout.addWidget(
+        self.sprites_label, alignment=QtCore.Qt.AlignmentFlag.AlignHCenter)
+        self.main_layout.addWidget(
+            self.sprite_btn, alignment=QtCore.Qt.AlignmentFlag.AlignHCenter)
+        self.sprite_btn.clicked.connect(self.change_sprite)
+
+
+
     def accept(self):
-        a = {"unit": self.slider.value()}
+        a = {"unit": self.slider.value(), "sprite": self.current_sprite}
         with open("prefs.json", "w", encoding="utf-8") as f:
             json.dump(a, f, indent=2, ensure_ascii=False)
         restart()
@@ -167,6 +205,7 @@ class Scripts(QWidget):
         main_layout.addWidget(self.form)
         self.setLayout(main_layout)
 
+
     def filling(self):
         for i in reversed(range(self.scripts_lines.count())):
             self.scripts_lines.itemAt(i).widget().setParent(None)
@@ -192,6 +231,7 @@ class Scripts(QWidget):
         add_btn.setIcon(QIcon(self.add_ico))
         add_btn.setStyleSheet("background-color: transparent;")
         add_btn.setIconSize(add_btn.size())
+        add_btn.clicked.connect(self.add_new_script)
         # add_btn.clicked.connect(self.add_new_action)
         layout.addWidget(add_btn)
         line.setLayout(layout)
@@ -200,10 +240,14 @@ class Scripts(QWidget):
     def filling_actions(self, name):
         self.hide_form()
         self.current_name = name
+        self.change_name_form(name)
+        
         for i in reversed(range(self.actions_lines.count())):
             self.actions_lines.itemAt(i).widget().setParent(None)
-        for x in self.complexcommands[name]:
-            self.add_actions(x)
+
+        if name in self.complexcommands:
+            for x in self.complexcommands[name]:
+                self.add_actions(x)
 
         layout = QHBoxLayout()
         line = QWidget()
@@ -224,9 +268,22 @@ class Scripts(QWidget):
         self.actions_lines.insertWidget(-1, line)
 
     def add_new_action(self):
-        if "" not in self.complexcommands[self.current_name]:
-            self.add_actions("")
-            self.complexcommands[self.current_name].append("")
+        if self.current_name in self.complexcommands:
+            if "" not in self.complexcommands[self.current_name]:
+                self.add_actions("")
+                self.complexcommands[self.current_name].append("")
+
+    def add_new_script(self):
+        if "" not in self.complexcommands:
+            self.complexcommands[""]= ["",]
+            self.save()
+            self.filling()
+
+    def delete_script(self,name):
+        del self.complexcommands[name]
+        self.save()
+        self.filling()
+        self.filling_actions("")
 
     def create_scripts_scroll(self):
         # Scroll Area which contains the widgets, set as the centralWidget
@@ -307,10 +364,11 @@ class Scripts(QWidget):
 
         layout.addWidget(self.adress)
         layout.addWidget(self.directory_btn)
-        layout.addWidget(self.accept_btn)
+        layout.addWidget(self.accept_btn) 
         self.form.setLayout(layout)
 
     def accept_command(self):
+        print(125)
         adress = self.complexcommands[self.current_name].index(
             self.current_adress)
         self.complexcommands[self.current_name][adress] = self.adress.text()
@@ -352,7 +410,7 @@ class Scripts(QWidget):
         delete_btn.setIcon(QIcon(self.delete_ico))
         delete_btn.setStyleSheet("background-color: transparent;")
         delete_btn.setIconSize(delete_btn.size())
-        #delete_btn.clicked.connect(lambda: self.delete_script(name.text()))
+        delete_btn.clicked.connect(lambda: self.delete_script(name.text()))
 
         edit_btn = QPushButton()
         edit_btn.setFixedSize(height, height)
@@ -374,6 +432,25 @@ class Scripts(QWidget):
         self.save()
         self.filling_actions(self.current_name)
 
+    def change_name(self):
+        if self.adress.text() not in self.complexcommands:
+            print(1)
+            self.complexcommands[self.adress.text()] = self.complexcommands[self.current_name]
+            self.delete_script(self.current_name)
+            self.current_name = self.adress.text()
+            self.hide_form()
+
+        
+
+    def change_name_form(self, name):
+        self.accept_btn.show()
+        self.adress.show()
+        self.adress.setPlaceholderText("Название")
+        self.adress.setText(name)
+        print(12)
+        self.accept_btn.clicked.disconnect()
+        self.accept_btn.clicked.connect(self.change_name)
+
     def show_form(self):
         self.accept_btn.show()
         self.adress.show()
@@ -383,6 +460,11 @@ class Scripts(QWidget):
         self.accept_btn.hide()
         self.adress.hide()
         self.directory_btn.hide()
+        self.adress.setPlaceholderText("Ссылка или путь")
+        
+        try: self.accept_btn.clicked.disconnect()
+        except Exception: pass
+        self.accept_btn.clicked.connect(self.accept_command)
 
     def add_actions(self, adress):
         layout = QHBoxLayout()
@@ -478,6 +560,7 @@ class FastAccess(QWidget, ):
                             }
                             QScrollBar:vertical {
                             width: 10%;
+
                             background: transparent;
                             }
                             QScrollBar::handle:vertical {

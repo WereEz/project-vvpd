@@ -1,30 +1,23 @@
-import requests
+from pyowm import OWM
+from pyowm.utils.config import get_default_config
 
 
-def get_weather(command):
-    appid = '1e21c100bda32fd7e80f329a1821a91f'
-    for i in command.split(" "):
-        try:
-            res = requests.get("http://api.openweathermap.org/data/2.5/find",
-                               params={'q': i+",RU", 'type': 'like', 'units': 'metric', 'APPID': appid})
-            check = 1
-        except Exception:
-            check = 0
-    if check == 1:
-        data = res.json()
-        cities = ["{} ({})".format(d['name'], d['sys']['country'])
-                  for d in data['list']]
-        city_id = data['list'][0]['id']
-        res = requests.get("http://api.openweathermap.org/data/2.5/weather",
-                           params={'id': city_id, 'units': 'metric', 'lang': 'ru', 'APPID': appid})
-        data = res.json()
-        weather = {'city': cities[0],
-                   'temperature': str(data['main']['temp']) + "°C",
-                   'feels_like': str(int(data['main']['feels_like'])) + "°C",
-                   'wind': str(int(data['wind']['speed'])) + "м/с",
-                   'humidity': str(data['main']['humidity']) + "%",
-                   'status': data['weather'][0]['description']
-                   }
-        return weather
-    else:
-        return 0
+def get_weather(place="Красноярск"):
+    config_dict = get_default_config()
+    config_dict['language'] = 'ru'
+    owm = OWM('1e21c100bda32fd7e80f329a1821a91f', config_dict)
+    mgr = owm.weather_manager()
+    try:
+        observation = mgr.weather_at_place(place+",RU")
+    except Exception:
+        return 0  # Города не существует
+    w = observation.weather
+    t = w.temperature("celsius")
+    weather = {	'city': place,
+                'temperature': str(int(t['temp']+0.5))+"°C", 
+                'feels_like': str(int(t['feels_like']+0.5))+"°C",
+                'wind': str(int(w.wind()['speed']+0.5))+"м/с",
+                'humidity': str(w.humidity) + "%",
+                'status': w.detailed_status
+                }
+    return weather

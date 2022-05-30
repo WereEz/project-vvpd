@@ -4,7 +4,7 @@ import weather
 import json
 import random
 qwords = ["кто","что","какой","чей","который","сколько","когда","где","куда",
-        "как","откуда","почему","зачем?"]
+        "как","откуда","почему","зачем"]
 
 
 with open("qa.json", "r", encoding="utf-8") as read_file:
@@ -23,12 +23,12 @@ def execute_command(commands, command):
     if (command.find("поиск") != -1) or (command.find("найди") != -1) or (command.find("найти") != -1):
         return [fsearch(command),0]
     if (command.find("погод") != -1 and (command.find("скажи") != -1 or
-        command.find("какая")!= -1 or command.find("cейчас")!= -1)) or (command.find("погода")!= -1):
-        mes = weather.get_weather(command)
+        command.find("какая")!= -1 or command.find("cейчас")!= -1)) or (command == ("погода")):
+        mes = weather.get_weather()
         if mes:
             message = f"<b>{mes['temperature']}</b><br>{mes['status']}<br>{mes['wind']}"
         else:
-            message = "<b>Извините</b><br>не могу узнать"
+            message = "<b>Извините</b><br>не могу узнать" 
         return([message,1])
 
     if command in qa:
@@ -39,6 +39,8 @@ def execute_command(commands, command):
             webbrowser.open_new_tab(search_string)
             return(["сейчас найдем",0])
         return([random.choice(qa["0"]),0])
+
+    
     
 def fopen(commands, command):
     for i in commands["folders"].items():
